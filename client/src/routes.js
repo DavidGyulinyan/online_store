@@ -27,11 +27,11 @@ export const publicRoutes = [
         Component: Auth
     },
     {
-        path: REGISTRATION_ROUTE + '/:id',
+        path: REGISTRATION_ROUTE,
         Component: Auth
     },
     {
-        path: DEVICE_ROUTE,
+        path: DEVICE_ROUTE + '/:id',
         Component: DevicePage
     }
 ]

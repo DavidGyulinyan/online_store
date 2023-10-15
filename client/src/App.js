@@ -4,7 +4,7 @@ import AppRouter from "./components/AppRouter";
 function App() {
   return (
     <BrowserRouter className="App">
-        {{/*<AppRouter/>*/}}
+        <AppRouter />
     </BrowserRouter>
   );
 }
