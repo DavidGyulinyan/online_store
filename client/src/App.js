@@ -3,10 +3,12 @@ import AppRouter from "./components/AppRouter";
 import NavBar from "./components/NavBar";
 
 function App() {
-    return (<BrowserRouter className="App">
-        <NavBar/>
-        <AppRouter/>
-    </BrowserRouter>);
+
+    return (
+        <BrowserRouter className="App">
+            <NavBar/>
+            <AppRouter/>
+        </BrowserRouter>);
 }
 
 export default App;
