@@ -8,9 +8,9 @@ const DeviceList = observer(() => {
     const {device} = useContext(Context)
 
     return (
-        <Col className="d-flex">
+        <Col className="d-flex flex-wrap gap-3">
             {
-                device.map(device =>
+                device.devices.map(device =>
                     <DeviceItem key={device.id} device={device}/>
                 )}
         </Col>

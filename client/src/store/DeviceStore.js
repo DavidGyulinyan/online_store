@@ -59,6 +59,62 @@ export default class DeviceStore {
                 price: 1399,
                 rating: 0,
                 img: "c25dc0d2-8c51-4ac7-b556-fc571eff6a49.jpg",
+            },
+            {
+                id: 6,
+                name: "Samsung Galaxy S23",
+                price: 1399,
+                rating: 0,
+                img: "c25dc0d2-8c51-4ac7-b556-fc571eff6a49.jpg",
+            },
+            {
+                id: 7,
+                name: "Samsung Galaxy S23",
+                price: 1399,
+                rating: 0,
+                img: "c25dc0d2-8c51-4ac7-b556-fc571eff6a49.jpg",
+            },
+            {
+                id: 8,
+                name: "Samsung Galaxy S23",
+                price: 1399,
+                rating: 0,
+                img: "c25dc0d2-8c51-4ac7-b556-fc571eff6a49.jpg",
+            },
+            {
+                id: 9,
+                name: "Samsung Galaxy S23",
+                price: 1399,
+                rating: 0,
+                img: "c25dc0d2-8c51-4ac7-b556-fc571eff6a49.jpg",
+            },
+            {
+                id: 19,
+                name: "Samsung Galaxy S23",
+                price: 1399,
+                rating: 0,
+                img: "c25dc0d2-8c51-4ac7-b556-fc571eff6a49.jpg",
+            },
+            {
+                id: 29,
+                name: "Samsung Galaxy S23",
+                price: 1399,
+                rating: 0,
+                img: "c25dc0d2-8c51-4ac7-b556-fc571eff6a49.jpg",
+            },
+            {
+                id: 3439,
+                name: "Samsung Galaxy S23",
+                price: 1399,
+                rating: 0,
+                img: "c25dc0d2-8c51-4ac7-b556-fc571eff6a49.jpg",
+            },
+            {
+                id: 4369,
+                name: "Samsung Galaxy S23",
+                price: 1399,
+                rating: 0,
+                img: "c25dc0d2-8c51-4ac7-b556-fc571eff6a49.jpg",
             }
         ]
         this._selectedType = {}
