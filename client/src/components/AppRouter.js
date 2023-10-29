@@ -6,6 +6,7 @@ import {Context} from "../index";
 
 const AppRouter = () => {
     const {user} = useContext(Context)
+
     return (
         <Routes>
             {user.isAuth &&

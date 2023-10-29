@@ -57,6 +57,7 @@ const DevicePage = () => {
                 </Col>
             </Row>
             <Row className="d-flex justify-content-center align-items-center mt-3">
+                <h1>Specifications</h1>
                 {description.map((info, index) =>
                     <Row key={info.id} style={{background: index % 2 === 0 ? 'lightgray' : 'transparent', padding: 10}}>
                         {info.title} : {info.description}
