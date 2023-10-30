@@ -23,9 +23,12 @@ const CreateDevice = ({show, onHide}) => {
                 id: new Date().getTime(),
                 title: "",
                 description: "",
-                number: Date.now()
             }
         ])
+    }
+
+    const removeInfo = id => {
+        setInfo(info.filter(i => i.id !== id))
     }
 
     return (
@@ -82,30 +85,46 @@ const CreateDevice = ({show, onHide}) => {
                         variant="outline-dark"
                         onClick={addInfo}
                     >
-                        Add
+                        Add new properties
                     </Button>
                     {info.map(i =>
-                        <Row key={i.id}>
+                        <Row className="mt-4" key={i.id}>
                             <Col md={4}>
                                 <FormControl
-                                    placeholder="Enter name"
+                                    placeholder="Enter name of properties"
                                 />
                             </Col>
                             <Col md={4}>
                                 <FormControl
+                                    type="text"
                                     placeholder="Enter description"
                                 />
                             </Col>
                             <Col md={4}>
-                                <Button variant="outline-danger">Delete</Button>
+                                <Button
+                                    variant="outline-danger"
+                                    onClick={() => removeInfo(i.id)}
+                                >
+                                    Delete
+                                </Button>
                             </Col>
                         </Row>
                     )}
                 </Form>
             </Modal.Body>
             <Modal.Footer>
-                <Button variant={"outline-danger"} onClick={onHide}>Close</Button>
-                <Button variant={"outline-success"} onClick={onHide}>Add</Button>
+                <Button
+                    variant="outline-danger"
+                    onClick={onHide}
+                >
+                    Close
+                </Button>
+                <Button
+                    variant={"outline-success"}
+                    onClick={onHide}
+                >
+                    Add
+                </Button>
             </Modal.Footer>
         </Modal>
     );
