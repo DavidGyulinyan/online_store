@@ -32,9 +32,9 @@ const Admin = () => {
             >
                 Add device
             </Button>
-            <CreateBrand show={brandVisible} onClick={() => setBrandVisible(false)}/>
-            <CreateType show={typeVisible} onClick={() => setTypeVisible(false)}/>
-            <CreateDevice show={deviceVisible} onClick={() => setDeviceVisible(false)}/>
+            <CreateBrand show={brandVisible} onHide={() => setBrandVisible(false)} onClick={() => setBrandVisible(false)}/>
+            <CreateType show={typeVisible} onHide={() => setTypeVisible(false)} onClick={() => setTypeVisible(false)}/>
+            <CreateDevice show={deviceVisible} onHide={() => setDeviceVisible(false)} onClick={() => setDeviceVisible(false)}/>
         </Container>
     );
 };
