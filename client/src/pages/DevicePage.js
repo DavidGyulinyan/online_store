@@ -34,7 +34,7 @@ const DevicePage = () => {
                                 width: 240,
                                 height: 240,
                                 backgroundSize: 'cover',
-                                fontSize: 46
+                                fontSize: 64
                             }}
                         >
                             {device.rating}
