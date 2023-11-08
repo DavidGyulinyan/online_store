@@ -1,24 +1,31 @@
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 import {Button, Card, Col, Container, Form, FormControl} from "react-bootstrap";
 import {LOGIN_ROUTE, REGISTRATION_ROUTE} from "../utils/constants";
 import {Link, useLocation} from "react-router-dom";
 import {login, registration} from "../http/userAPI";
+import {observer} from "mobx-react-lite";
+import {Context} from "../index";
 
-const Auth = () => {
+const Auth = observer(() => {
+    const {user} = useContext(Context)
     const location = useLocation()
     const isLogin = location.pathname === LOGIN_ROUTE
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
 
     const click = async () => {
-        if (isLogin) {
-            const response = await login()
-
-        } else {
-            const response = await registration(email, password)
-            console.log(response)
+        try {
+            let data;
+            if (isLogin) {
+                data = await login(email, password)
+            } else {
+                data = await registration(email, password)
+            }
+            user.setUser(user)
+            user.setIsAuth(true)
+        }catch(e) {
+            alert(e.response.data.message)
         }
-
     }
 
     return (
@@ -27,7 +34,7 @@ const Auth = () => {
             style={{height: window.innerHeight - 54}}
         >
             <Card style={{width: 600}} className="p-5">
-                <h2 className="m-auto">{isLogin ? "Authorization" : "Registration"}</h2>
+                <h2 className="m-auto">{isLogin ? "Login" : "Registration"}</h2>
                 <Form className="d-flex flex-column">
                     <FormControl
                         className="mt-3"
@@ -69,6 +76,6 @@ const Auth = () => {
             </Card>
         </Container>
     );
-};
+});
 
 export default Auth;
