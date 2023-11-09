@@ -26,7 +26,7 @@ const NavBar = observer(() => {
                             variant={'outline-light'}
                             style={{marginLeft: "20px"}}
                         >
-                            Log in
+                            Log out
                         </Button>
                     </Nav>
                     :
