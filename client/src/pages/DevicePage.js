@@ -3,21 +3,9 @@ import {Button, Card, Col, Container, Image, Row} from "react-bootstrap";
 import bigStar from '../assets/bigStar.png'
 
 const DevicePage = () => {
-    const device = {
-        id: 1,
-        name: "IPhone 12 pro",
-        price: 1599,
-        rating: 3,
-        img: "ed8b5fe3-d71e-4eeb-8d3e-b6d023b416d1.jpg",
-    }
+    const device = {}
+    const description = []
 
-    const description = [
-        {id: 1, title: 'RAM', description: '5 GB'},
-        {id: 2, title: 'Camera', description: '12 MP'},
-        {id: 3, title: 'Processor', description: 'AMD'},
-        {id: 4, title: 'Cores', description: '3'},
-        {id: 5, title: 'Battery', description: '6000'},
-    ]
     return (
         <Container className="mt-3">
             <Row>
