@@ -8,26 +8,26 @@ import {check} from "./http/userAPI";
 import {Spinner} from "react-bootstrap";
 
 const App = observer(() => {
-    const {user} = useContext(Context)
-    const [loading, setLoading] = useState(true)
+        const {user} = useContext(Context)
+        const [loading, setLoading] = useState(true)
 
-    useEffect(() => {
+        useEffect(() => {
             check().then(data => {
                 user.setUser(true)
                 user.setIsAuth(true)
             }).finally(() => setLoading(false))
-    }, [user])
+        }, [user])
 
-    if(loading) {
-        return <Spinner animation={"grow"}/>
+        if (loading) {
+            return <Spinner animation={"grow"}/>
+        }
+
+        return (
+            <BrowserRouter className="App">
+                <NavBar/>
+                <AppRouter/>
+            </BrowserRouter>);
     }
-
-    return (
-        <BrowserRouter className="App">
-            <NavBar/>
-            <AppRouter/>
-        </BrowserRouter>);
-}
 );
 
 export default App;

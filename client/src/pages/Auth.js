@@ -5,7 +5,7 @@ import {Link, useLocation} from "react-router-dom";
 import {login, registration} from "../http/userAPI";
 import {observer} from "mobx-react-lite";
 import {Context} from "../index";
-import { useNavigate } from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 
 const Auth = observer(() => {
     const {user} = useContext(Context)
@@ -26,7 +26,7 @@ const Auth = observer(() => {
             user.setUser(user)
             user.setIsAuth(true)
             navigate(SHOP_ROUTE)
-        }catch(e) {
+        } catch (e) {
             alert(e.response.data.message)
         }
     }
