@@ -1,5 +1,5 @@
 import React from 'react';
-import {Button, Form, Modal} from "react-bootstrap";
+import {Button, Form, FormControl, Modal, ModalBody, ModalFooter, ModalHeader} from "react-bootstrap";
 
 const CreateBrand = ({show, onHide}) => {
 
@@ -11,20 +11,20 @@ const CreateBrand = ({show, onHide}) => {
                 size="lg"
                 centered
             >
-                <Modal.Header closeButton>
+                <ModalHeader closeButton>
                     <Modal.Title id="contained-modal-title-vcenter">
                         Add new brand
                     </Modal.Title>
-                </Modal.Header>
-                <Modal.Body>
+                </ModalHeader>
+                <ModalBody>
                     <Form>
-                        <Form.Control placeholder={"enter the name of type"}/>
+                        <FormControl id="brand-form" placeholder={"enter the name of type"}/>
                     </Form>
-                </Modal.Body>
-                <Modal.Footer>
+                </ModalBody>
+                <ModalFooter>
                     <Button variant={"outline-danger"} onClick={onHide}>Close</Button>
                     <Button variant={"outline-success"} onClick={onHide}>Add</Button>
-                </Modal.Footer>
+                </ModalFooter>
             </Modal>
         </div>
     );

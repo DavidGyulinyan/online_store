@@ -1,7 +1,8 @@
 import React from 'react';
-import {Button, Form, Modal} from "react-bootstrap";
+import {Button, Form, FormControl, Modal, ModalFooter, ModalHeader} from "react-bootstrap";
 
 const CreateType = ({show, onHide}) => {
+
 
     return (
 
@@ -11,20 +12,25 @@ const CreateType = ({show, onHide}) => {
             size="lg"
             centered
         >
-            <Modal.Header closeButton>
+            <ModalHeader closeButton>
                 <Modal.Title id="contained-modal-title-vcenter">
                     Add new type
                 </Modal.Title>
-            </Modal.Header>
+            </ModalHeader>
             <Modal.Body>
                 <Form>
-                    <Form.Control placeholder={"enter the name of type"}/>
+                    <FormControl
+                        id="type-form"
+                        onChange={e => e.target.value}
+
+                        placeholder={"enter the name of type"}
+                    />
                 </Form>
             </Modal.Body>
-            <Modal.Footer>
+            <ModalFooter>
                 <Button variant={"outline-danger"} onClick={onHide}>Close</Button>
                 <Button variant={"outline-success"} onClick={onHide}>Add</Button>
-            </Modal.Footer>
+            </ModalFooter>
         </Modal>
     );
 };

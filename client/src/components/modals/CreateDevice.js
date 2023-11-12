@@ -7,8 +7,8 @@ import {
     DropdownToggle,
     Form,
     FormControl,
-    Modal,
-    ModalHeader, Row
+    Modal, ModalBody, ModalFooter,
+    ModalHeader, ModalTitle, Row
 } from "react-bootstrap";
 import {Context} from "../../index";
 
@@ -20,15 +20,15 @@ const CreateDevice = ({show, onHide}) => {
         setInfo([
             ...info,
             {
-                id: new Date().getTime(),
+                number: new Date().getTime(),
                 title: "",
                 description: "",
             }
         ])
     }
 
-    const removeInfo = id => {
-        setInfo(info.filter(i => i.id !== id))
+    const removeInfo = number => {
+        setInfo(info.filter(i => i.number !== number))
     }
 
     return (
@@ -39,14 +39,14 @@ const CreateDevice = ({show, onHide}) => {
             centered
         >
             <ModalHeader closeButton>
-                <Modal.Title id="contained-modal-title-vcenter">
+                <ModalTitle id="contained-modal-title-vcenter">
                     Add new device
-                </Modal.Title>
+                </ModalTitle>
             </ModalHeader>
-            <Modal.Body>
+            <ModalBody>
                 <Form>
                     <Dropdown className="mt-2">
-                        <DropdownToggle>Choose the type</DropdownToggle>
+                        <DropdownToggle>Choose type</DropdownToggle>
                         <DropdownMenu>
                             {device.types.map(type =>
                                 <DropdownItem key={type.id}>
@@ -56,7 +56,7 @@ const CreateDevice = ({show, onHide}) => {
                         </DropdownMenu>
                     </Dropdown>
                     <Dropdown className="mt-2">
-                        <DropdownToggle>Choose the brand</DropdownToggle>
+                        <DropdownToggle>Choose brand</DropdownToggle>
                         <DropdownMenu>
                             {device.brands.map(brand =>
                                 <DropdownItem key={brand.id}>
@@ -66,17 +66,19 @@ const CreateDevice = ({show, onHide}) => {
                         </DropdownMenu>
                     </Dropdown>
                     <FormControl
+                        id="name-form"
                         className="mt-3"
                         placeholder="Name"
                     />
                     <FormControl
+                        id="price-form"
                         className="mt-3"
                         placeholder="Price"
                         type="number"
                     />
                     <FormControl
+                        id="3"
                         className="mt-3"
-                        placeholder="Enter the name of device"
                         type="file"
                     />
                     <hr/>
@@ -88,14 +90,16 @@ const CreateDevice = ({show, onHide}) => {
                         Add new properties
                     </Button>
                     {info.map(i =>
-                        <Row className="mt-4" key={i.id}>
+                        <Row className="mt-4" key={i.number}>
                             <Col md={4}>
                                 <FormControl
+                                    id="properties-name-form"
                                     placeholder="Enter name of properties"
                                 />
                             </Col>
                             <Col md={4}>
                                 <FormControl
+                                    id="description-name-form"
                                     type="text"
                                     placeholder="Enter description"
                                 />
@@ -103,7 +107,7 @@ const CreateDevice = ({show, onHide}) => {
                             <Col md={4}>
                                 <Button
                                     variant="outline-danger"
-                                    onClick={() => removeInfo(i.id)}
+                                    onClick={() => removeInfo(i.number)}
                                 >
                                     Delete
                                 </Button>
@@ -111,8 +115,8 @@ const CreateDevice = ({show, onHide}) => {
                         </Row>
                     )}
                 </Form>
-            </Modal.Body>
-            <Modal.Footer>
+            </ModalBody>
+            <ModalFooter>
                 <Button
                     variant="outline-danger"
                     onClick={onHide}
@@ -125,7 +129,7 @@ const CreateDevice = ({show, onHide}) => {
                 >
                     Add
                 </Button>
-            </Modal.Footer>
+            </ModalFooter>
         </Modal>
     );
 };

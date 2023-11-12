@@ -14,14 +14,14 @@ const Admin = () => {
             <Button
                 variant={"outline-dark"}
                 className="mt-4 p-2"
-                onClick={() => setBrandVisible(true)}
+                onClick={() => setTypeVisible(true)}
             >
                 Add type
             </Button>
             <Button
                 variant={"outline-dark"}
                 className="mt-4 p-2"
-                onClick={() => setTypeVisible(true)}
+                onClick={() => setBrandVisible(true)}
             >
                 Add brand
             </Button>
@@ -32,8 +32,8 @@ const Admin = () => {
             >
                 Add device
             </Button>
-            <CreateBrand show={brandVisible} onHide={() => setBrandVisible(false)} onClick={() => setBrandVisible(false)}/>
             <CreateType show={typeVisible} onHide={() => setTypeVisible(false)} onClick={() => setTypeVisible(false)}/>
+            <CreateBrand show={brandVisible} onHide={() => setBrandVisible(false)} onClick={() => setBrandVisible(false)}/>
             <CreateDevice show={deviceVisible} onHide={() => setDeviceVisible(false)} onClick={() => setDeviceVisible(false)}/>
         </Container>
     );
