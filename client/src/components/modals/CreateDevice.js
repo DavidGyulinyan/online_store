@@ -1,4 +1,4 @@
-import React, {useContext, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import {
     Button, Col,
     Dropdown,
@@ -11,10 +11,20 @@ import {
     ModalHeader, ModalTitle, Row
 } from "react-bootstrap";
 import {Context} from "../../index";
+import {fetchBrands, fetchDevices, fetchTypes} from "../../http/deviceAPI";
+import {observer} from "mobx-react-lite";
 
-const CreateDevice = ({show, onHide}) => {
+const CreateDevice = observer(({show, onHide}) => {
     const {device} = useContext(Context)
+    const [name, setName] = useState('')
+    const [price, setPrice] = useState(0)
+    const [file, setFile] = useState(null)
     const [info, setInfo] = useState([])
+
+    useEffect(() => {
+        fetchTypes().then(data => device.setTypes(data))
+        fetchBrands().then(data => device.setBrands(data))
+    }, [device])
 
     const addInfo = () => {
         setInfo([
@@ -29,6 +39,10 @@ const CreateDevice = ({show, onHide}) => {
 
     const removeInfo = number => {
         setInfo(info.filter(i => i.number !== number))
+    }
+
+    const selectFile = e => {
+        setFile(e.target.value[0])
     }
 
     return (
@@ -46,20 +60,28 @@ const CreateDevice = ({show, onHide}) => {
             <ModalBody>
                 <Form>
                     <Dropdown className="mt-2">
-                        <DropdownToggle>Choose type</DropdownToggle>
+                        <DropdownToggle>{device.selectedType.name ? device.selectedType.name : "Choose type"}</DropdownToggle>
                         <DropdownMenu>
-                            {device.types.map(type =>
-                                <DropdownItem key={type.id}>
+                            {
+                                device.types.map(type =>
+                                <DropdownItem
+                                    onClick={() => device.setSelectedType(type)}
+                                    key={type.id}
+                                >
                                     {type.name}
                                 </DropdownItem>
                             )}
                         </DropdownMenu>
                     </Dropdown>
                     <Dropdown className="mt-2">
-                        <DropdownToggle>Choose brand</DropdownToggle>
+                        <DropdownToggle>{device.selectedBrand.name ? device.selectedBrand.name : "Choose brand"}</DropdownToggle>
                         <DropdownMenu>
-                            {device.brands.map(brand =>
-                                <DropdownItem key={brand.id}>
+                            {
+                                device.brands.map(brand =>
+                                <DropdownItem
+                                    onClick={() => device.setSelectedBrand(brand)}
+                                    key={brand.id}
+                                >
                                     {brand.name}
                                 </DropdownItem>
                             )}
@@ -69,17 +91,22 @@ const CreateDevice = ({show, onHide}) => {
                         id="name-form"
                         className="mt-3"
                         placeholder="Name"
+                        value={name}
+                        onChange={e => setName(e.target.value)}
                     />
                     <FormControl
                         id="price-form"
                         className="mt-3"
                         placeholder="Price"
                         type="number"
+                        value={price}
+                        onChange={e => setPrice(Number(e.target.value))}
                     />
                     <FormControl
-                        id="3"
+                        id="file-form"
                         className="mt-3"
                         type="file"
+                        onChange={selectFile}
                     />
                     <hr/>
 
@@ -132,6 +159,6 @@ const CreateDevice = ({show, onHide}) => {
             </ModalFooter>
         </Modal>
     );
-};
+});
 
 export default CreateDevice;
