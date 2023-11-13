@@ -11,7 +11,7 @@ import {
     ModalHeader, ModalTitle, Row
 } from "react-bootstrap";
 import {Context} from "../../index";
-import {fetchBrands, fetchDevices, fetchTypes} from "../../http/deviceAPI";
+import {createDevice, fetchBrands, fetchDevices, fetchTypes} from "../../http/deviceAPI";
 import {observer} from "mobx-react-lite";
 
 const CreateDevice = observer(({show, onHide}) => {
@@ -41,8 +41,23 @@ const CreateDevice = observer(({show, onHide}) => {
         setInfo(info.filter(i => i.number !== number))
     }
 
+    const changeInfo = (key, value, number) => {
+        setInfo(info.map(i => i.number === number ? {...i, [key]: value} : i))
+    }
+
     const selectFile = e => {
         setFile(e.target.value[0])
+    }
+
+    const addDevice = () => {
+        const formData = new FormData()
+        formData.append('name', name)
+        formData.append('price', `${price}`)
+        formData.append('img', file)
+        formData.append('brandId', device.selectedBrand.id)
+        formData.append('typeId', device.selectedType.id)
+        formData.append('info', JSON.stringify(info))
+        createDevice(formData).then(data => onHide())
     }
 
     return (
@@ -64,13 +79,13 @@ const CreateDevice = observer(({show, onHide}) => {
                         <DropdownMenu>
                             {
                                 device.types.map(type =>
-                                <DropdownItem
-                                    onClick={() => device.setSelectedType(type)}
-                                    key={type.id}
-                                >
-                                    {type.name}
-                                </DropdownItem>
-                            )}
+                                    <DropdownItem
+                                        onClick={() => device.setSelectedType(type)}
+                                        key={type.id}
+                                    >
+                                        {type.name}
+                                    </DropdownItem>
+                                )}
                         </DropdownMenu>
                     </Dropdown>
                     <Dropdown className="mt-2">
@@ -78,13 +93,13 @@ const CreateDevice = observer(({show, onHide}) => {
                         <DropdownMenu>
                             {
                                 device.brands.map(brand =>
-                                <DropdownItem
-                                    onClick={() => device.setSelectedBrand(brand)}
-                                    key={brand.id}
-                                >
-                                    {brand.name}
-                                </DropdownItem>
-                            )}
+                                    <DropdownItem
+                                        onClick={() => device.setSelectedBrand(brand)}
+                                        key={brand.id}
+                                    >
+                                        {brand.name}
+                                    </DropdownItem>
+                                )}
                         </DropdownMenu>
                     </Dropdown>
                     <FormControl
@@ -122,6 +137,8 @@ const CreateDevice = observer(({show, onHide}) => {
                                 <FormControl
                                     id="properties-name-form"
                                     placeholder="Enter name of properties"
+                                    onChange={e => changeInfo('title', e.target.value, i.number)}
+                                    value={i.title}
                                 />
                             </Col>
                             <Col md={4}>
@@ -129,6 +146,9 @@ const CreateDevice = observer(({show, onHide}) => {
                                     id="description-name-form"
                                     type="text"
                                     placeholder="Enter description"
+                                    onChange={e => changeInfo('description', e.target.value, i.number)}
+                                    value={i.description}
+
                                 />
                             </Col>
                             <Col md={4}>
@@ -152,7 +172,7 @@ const CreateDevice = observer(({show, onHide}) => {
                 </Button>
                 <Button
                     variant={"outline-success"}
-                    onClick={onHide}
+                    onClick={addDevice}
                 >
                     Add
                 </Button>
