@@ -41,6 +41,7 @@ const Auth = observer(() => {
                 <h2 className="m-auto">{isLogin ? "Login" : "Registration"}</h2>
                 <Form className="d-flex flex-column">
                     <FormControl
+                        id="email-form"
                         className="mt-3"
                         placeholder="Email"
                         value={email}
@@ -48,6 +49,7 @@ const Auth = observer(() => {
                     />
 
                     <FormControl
+                        id="password-form"
                         className="mt-3"
                         placeholder="Password"
                         value={password}
