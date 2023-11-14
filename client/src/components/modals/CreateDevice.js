@@ -46,7 +46,7 @@ const CreateDevice = observer(({show, onHide}) => {
     }
 
     const selectFile = e => {
-        setFile(e.target.value[0])
+        setFile(e.target.files[0])
     }
 
     const addDevice = () => {
@@ -59,6 +59,7 @@ const CreateDevice = observer(({show, onHide}) => {
         formData.append('info', JSON.stringify(info))
         createDevice(formData).then(data => onHide())
     }
+
 
     return (
         <Modal
